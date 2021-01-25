@@ -1,19 +1,11 @@
-import './App.css';
-import {scalesOfSize} from "./theory";
+import Layout from "./components/Layout";
+import Explorer from "./components/Explorer";
 
 function App() {
-  const sizes = [...Array(12).keys()].map((i) => i + 1);
   return (
-    <div className="App">
-      <header className="App-header">
-        {
-          sizes.map(size => (
-          <p>
-           <strong>{scalesOfSize(size).length}</strong> {size}-note {size > 1 ? "scales" : "scale"}.
-          </p>))
-        }
-      </header>
-    </div>
+    <Layout>
+      <Explorer />
+    </Layout>
   );
 }
 

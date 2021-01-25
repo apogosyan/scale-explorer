@@ -1,4 +1,4 @@
-import { kCombinations } from "./utils";
+import { kCombinations } from "./helpers";
 
 /**
  * Represents a basic unit of a scale. Named 1 to 12 since there are
