@@ -1,11 +1,11 @@
 import * as React from "react";
 import styles from "./index.module.css";
 
-type LayoutProps = {
+type Props = {
   children: React.ReactChild;
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: Props) => {
   return (
     <div className={styles.root}>
       <header>
