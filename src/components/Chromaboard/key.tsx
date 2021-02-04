@@ -1,11 +1,15 @@
-import styles from "./index.module.css";
+import { ToneDegree } from "../../theory";
 
 interface Props {
-  label?: string;
+  toneDegree: ToneDegree | null;
 }
 
-const Key = ({ label }: Props) => {
-  return <div className={styles.key}>{label}</div>;
+const Key = ({ toneDegree }: Props) => {
+  return toneDegree ? (
+    <div className="key">{toneDegree.degree}</div>
+  ) : (
+    <div className="key disabledKey"></div>
+  );
 };
 
 export default Key;
