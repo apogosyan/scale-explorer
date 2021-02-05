@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactChild;
 };
 
-const Layout = ({ children }: Props) => {
+export const Layout = ({ children }: Props) => {
   return (
     <div className={styles.root}>
       <header>
@@ -15,5 +15,3 @@ const Layout = ({ children }: Props) => {
     </div>
   );
 };
-
-export default Layout;

@@ -1,5 +1,5 @@
-import Layout from "./components/Layout";
-import Explorer from "./components/Explorer";
+import { Layout } from "./components/Layout";
+import { Explorer } from "./components/Explorer";
 
 function App() {
   return (

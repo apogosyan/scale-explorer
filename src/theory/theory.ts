@@ -1,5 +1,6 @@
-type Tone = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+import { kCombinations } from "./helpers";
 
+type Tone = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 type Degree =
   | "1"
   | "m2"
@@ -56,3 +57,14 @@ function tonesToScale(tones: Tone[]): Scale {
 }
 
 export const pentatonic = tonesToScale([1, 4, 6, 8, 11]);
+
+type ScaleSize = Tone;
+
+/* Return all scales of n size */
+export const scalesOfSize = (size: ScaleSize): Scale[] => {
+  const full = [...Array(13).keys()].slice(1);
+  const root = full.slice(0, 1);
+  const rest = full.slice(1);
+  const combs = kCombinations(rest, size - 1);
+  return combs.map((comb) => tonesToScale(root.concat(comb) as Tone[]));
+};

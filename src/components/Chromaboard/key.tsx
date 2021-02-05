@@ -1,15 +1,25 @@
-import { ToneDegree } from "../../theory";
+import { ReactEventHandler } from "react";
+import { ScaleNote } from "../../theory";
+import styles from "./index.module.css";
 
-interface Props {
-  toneDegree: ToneDegree | null;
+interface KeyProps extends Omit<ScaleNote, "midi"> {
+  onPress: ReactEventHandler<HTMLDivElement>;
+  onRelease: ReactEventHandler<HTMLDivElement>;
 }
 
-const Key = ({ toneDegree }: Props) => {
-  return toneDegree ? (
-    <div className="key">{toneDegree.degree}</div>
+export const Key = ({
+  tone,
+  degree,
+  disabled,
+  onPress,
+  onRelease,
+}: KeyProps) => {
+  return disabled ? (
+    <div className={styles.key} onMouseDown={onPress} onMouseUp={onRelease}>
+      <div>{tone}</div>
+      <div>{degree}</div>
+    </div>
   ) : (
-    <div className="key disabledKey"></div>
+    <div className={`${styles.key} ${styles.disabledKey}`}></div>
   );
 };
-
-export default Key;
