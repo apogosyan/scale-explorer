@@ -30,12 +30,6 @@
   cursor: pointer;
 }
 
-.key div:first-of-type {
-  color: #aaa;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-}
-
 .disabledKey {
   border-color: #cecece;
   background: #fcfcfc;

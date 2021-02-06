@@ -1,33 +1,32 @@
 import { Scale } from "../../theory";
 import { Key } from "./Key";
 import styles from "./index.module.css";
+import { useMidiPlayer } from "../../helpers/useMidiPlayer";
+import { useAudioContext } from "../../helpers/useAudioContext";
 
 interface Props {
   scale: Scale;
 }
 
-export const Chromaboard = ({ scale }: Props) => {
-  const play = () => {
-    console.log("play");
-  };
-  const stop = () => {
-    console.log("stop");
-  };
+// TODO: add loading animation while soundfont is loading
 
-  const title = scale.name + (scale.alias ? `(${scale.alias})` : "");
+export const Chromaboard = ({ scale }: Props) => {
+  const AudioContext = useAudioContext()!;
+  const { isLoading, noteOn, noteOff } = useMidiPlayer(AudioContext);
+  const title = scale.name + (scale.alias ? ` (${scale.alias})` : "");
 
   return (
     <div className={styles.chromaboard}>
       <h2>{title}</h2>
       <div className={styles.keys}>
-        {scale.notes.map(({ tone, degree, disabled }, idx) => (
+        {scale.notes.map(({ degree, midi, disabled }, idx) => (
           <Key
             key={`key_${idx}`}
-            tone={tone}
             degree={degree}
-            disabled={disabled}
-            onPress={(event) => play()}
-            onRelease={(event) => stop()}
+            midi={midi}
+            disabled={disabled || isLoading}
+            onPress={noteOn}
+            onRelease={noteOff}
           />
         ))}
       </div>
