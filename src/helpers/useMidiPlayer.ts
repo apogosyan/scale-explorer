@@ -28,7 +28,9 @@ export function useMidiPlayer(
 
   async function init() {
     setIsLoading(true);
-    const player = await Soundfont.instrument(ac.current, DEFAULT_INSTRUMENT);
+    const player = await Soundfont.instrument(ac.current, DEFAULT_INSTRUMENT, {
+      gain: 1,
+    });
 
     setIsLoading(false);
     hasLoaded.current = true;
