@@ -38,12 +38,12 @@
 
 .keyLabel {
   position: relative;
-  width: 30%;
+  width: 35%;
   height: 0;
-  padding-bottom: 30%;
+  padding-bottom: 35%;
   border: 1px solid black;
-  border-radius: 2px;
-  background: #fcfcfc;
+  border-radius: 4px;
+  background: #fafafa;
   margin-top: 0.5rem;
 }
 
@@ -53,10 +53,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: normal;
   font-family: "Futura", "Lucida Grande", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+  .keyLabel div {
+    font-size: 12px;
+  }
 }

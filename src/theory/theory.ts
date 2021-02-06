@@ -63,11 +63,19 @@ export type AudioContextOrNull = typeof AudioContext | null;
 
 type ScaleSize = Tone;
 
-/* Return all scales of n size */
-export const scalesOfSize = (size: ScaleSize): Scale[] => {
+const scalesOfSize = (size: ScaleSize): Scale[] => {
   const full = [...Array(13).keys()].slice(1);
   const root = full.slice(0, 1);
   const rest = full.slice(1);
   const combs = kCombinations(rest, size - 1);
   return combs.map((comb) => tonesToScale(root.concat(comb) as Tone[]));
+};
+
+export const getAllScales = () => {
+  const sizes = [...Array(13).keys()];
+  let initial: Scale[] = [];
+  return sizes.reduce(
+    (acc, current) => acc.concat(scalesOfSize(current as Tone)),
+    initial
+  );
 };
