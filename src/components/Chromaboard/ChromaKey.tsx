@@ -7,7 +7,7 @@ interface KeyProps extends Omit<ScaleNote, "tone"> {
   onRelease: (note: MidiValue) => Promise<void>;
 }
 
-export const Key = ({
+export const ChromaKey = ({
   degree,
   midi,
   disabled,

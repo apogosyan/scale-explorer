@@ -1,5 +1,5 @@
 import { Scale } from "../../theory";
-import { Key } from "./Key";
+import { ChromaKey } from "./ChromaKey";
 import styles from "./index.module.css";
 import { useMidiPlayer } from "../../helpers/useMidiPlayer";
 import { useAudioContext } from "../../helpers/useAudioContext";
@@ -20,8 +20,8 @@ export const Chromaboard = ({ scale }: Props) => {
       <h2>{title}</h2>
       <div className={styles.keys}>
         {scale.notes.map(({ degree, midi, disabled }, idx) => (
-          <Key
-            key={`key_${idx}`}
+          <ChromaKey
+            key={midi}
             degree={degree}
             midi={midi}
             disabled={disabled || isLoading}
