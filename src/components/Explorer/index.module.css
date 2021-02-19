@@ -2,7 +2,7 @@
   display: grid;
 }
 
-select {
+.selector {
   width: 60%;
   max-width: 400px;
   margin: 0 auto;

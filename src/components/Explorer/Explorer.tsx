@@ -1,56 +1,36 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { getAllScales } from "../../theory";
 import styles from "./index.module.css";
-import { InstrumentContext } from "../../App";
 import { Chromaboard } from "../Chromaboard";
-import { Piano } from "../Piano";
-import { Guitar } from "../Guitar";
+import Select from "react-select";
 
 const ALL_SCALES = getAllScales();
 const MINOR_PENTATONIC = "1.m3.P4.P5.m7";
 
-const instruments: Record<string, any> = {
-  chromaboard: Chromaboard,
-  piano: Piano,
-  guitar: Guitar,
-};
-
 export const Explorer = () => {
-  const { currentInstrument, setCurrentInstrument } = useContext(
-    InstrumentContext
+  const [selectedScaleId, setSelectedScaleId] = useState<string | null>(
+    MINOR_PENTATONIC
   );
-
-  const [selectedScaleId, setSelectedScaleId] = useState(MINOR_PENTATONIC);
 
   const selectedScale = ALL_SCALES.find(
     (scale) => scale.name === selectedScaleId
   )!;
 
-  const InstrumentComponent = instruments[currentInstrument];
+  const options = ALL_SCALES.map((scale) => ({
+    value: scale.name,
+    label: `${scale.name} ${scale.alias ?? ""}`,
+  }));
 
   return (
     <div className={styles.explorer}>
-      <select
-        value={currentInstrument}
-        onChange={(e) => setCurrentInstrument(e.target.value)}
-      >
-        <option value="chromaboard">Chromatic Keyboard</option>
-        <option value="piano">Piano</option>
-        <option value="guitar">Guitar</option>
-      </select>
-
-      <select
-        value={selectedScaleId}
-        onChange={(e) => setSelectedScaleId(e.target.value)}
-      >
-        {ALL_SCALES.map((scale) => (
-          <option value={scale.name}>
-            {scale.name} {scale.alias}
-          </option>
-        ))}
-      </select>
-
-      <InstrumentComponent scale={selectedScale} />
+      <div className={styles.selector}>
+        <Select
+          options={options}
+          onChange={(selected) => setSelectedScaleId(selected!.value)}
+          defaultValue={{ value: MINOR_PENTATONIC, label: MINOR_PENTATONIC }}
+        />
+      </div>
+      <Chromaboard scale={selectedScale} />
     </div>
   );
 };

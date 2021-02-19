@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import Soundfont, { Player } from "soundfont-player";
 import { MidiValue, AudioContextOrNull } from "../theory";
 
-const DEFAULT_INSTRUMENT = "cello";
+const DEFAULT_INSTRUMENT = "acoustic_grand_piano";
 
 interface MidiPlayer {
   isLoading: boolean;
