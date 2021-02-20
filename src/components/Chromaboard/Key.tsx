@@ -53,6 +53,8 @@ export const Key = ({
       onMouseDown={() => onPress(midi)}
       onMouseUp={() => onRelease(midi)}
       onMouseOut={() => onRelease(midi)}
+      onTouchStart={() => onPress(midi)}
+      onTouchEnd={() => onRelease(midi)}
     >
       <div>{degree}</div>
       <div className={styles.keyLabel}>
